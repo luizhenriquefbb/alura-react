@@ -23,5 +23,5 @@ chrome-user-data
 *.swp
 *.swo
 
-
-server/cdcadmin-api/
+server_tnc/
+.DS_Store
