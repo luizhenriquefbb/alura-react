@@ -1,4 +1,4 @@
-import Constantes from "../Constantes";
+import {BASE_URL} from "../Constantes";
 
 export default class ComunicaComServer {
     constructor() {
@@ -68,7 +68,7 @@ export default class ComunicaComServer {
     }
 
     static post(url, data) {
-        url = `${Constantes.BASE_URL}/novo_autor`
+        url = `${BASE_URL}/novo_autor`
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);
@@ -79,7 +79,7 @@ export default class ComunicaComServer {
                 if (xhr.readyState === 4) {
     
                     if (xhr.status === 200) {
-                        resolve({ msg: 'Negociação enviada com sucesso' });
+                        resolve({ msg: 'Negociação enviada com sucesso', response:JSON.parse(xhr.responseText)});
     
                     } else {
                         reject({ "msg": `Não foi possível enviar a negociação: ${xhr.responseText}` });

@@ -3,4 +3,7 @@ const Constantes =  {
         "BASE_URL": "http://localhost:8080/api"
 }
 
-export default Constantes ;
+// export default Constantes ;
+module.exports = {
+        BASE_URL : Constantes.BASE_URL
+}

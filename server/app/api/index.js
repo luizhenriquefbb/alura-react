@@ -18,7 +18,7 @@ api.cadastrarAutor = function(req, res) {
 
    console.log(req.body);
    listaDeAutores.push(req.body);
-   res.status(200).json("Cadastrado com sucesso");
+   res.status(200).json(listaDeAutores);
 };
 
 
