@@ -20,16 +20,6 @@ export default class Main extends Component {
             ]
         };
 
-
-        // definir o "this" nas funcoes
-        this._getAutores    = this._getAutores.bind(this);
-        this.setNome        = this.setNome.bind(this);
-        this.setEmail       = this.setEmail.bind(this);
-        this.setSenha       = this.setSenha.bind(this);
-        this.atualizaLista  = this.atualizaLista.bind(this);
-        this.enviaForm      = this.enviaForm.bind(this);
-        
-        
     }
     
     /**
@@ -152,20 +142,20 @@ export default class Main extends Component {
                         <form className="pure-form pure-form-aligned">
                             <div className="pure-control-group">
                                 <label htmlFor="nome">Nome</label>
-                                <input /* required */ id="nome" type="text" name="nome" value={this.state.formNewUser.nome} onChange={this.setNome}  />
+                                <input /* required */ id="nome" type="text" name="nome" value={this.state.formNewUser.nome} onChange={evt => this.setNome(evt)}  />
                             </div>
                             <div className="pure-control-group">
                                 <label htmlFor="email">Email</label>
-                                <input /* required */ id="email" type="email" name="email" value={this.state.formNewUser.email} onChange={this.setEmail} />
+                                <input /* required */ id="email" type="email" name="email" value={this.state.formNewUser.email} onChange={evt => this.setEmail(evt)} />
                             </div>
                             <div className="pure-control-group">
                                 <label htmlFor="senha">Senha</label>
-                                <input /* required */ id="senha" type="password" name="senha" value={this.state.formNewUser.senha} onChange={this.setSenha}/>
+                                <input /* required */ id="senha" type="password" name="senha" value={this.state.formNewUser.senha} onChange={evt => this.setSenha(evt)}/>
                             </div>
                             <div className="pure-control-group">
                                 <label></label>
-                                <button onClick={this.enviaForm} className="pure-button pure-button-primary">Gravar</button>
-                                <button onClick={this.atualizaLista} className="pure-button pure-button-primary">Atualizar</button>
+                                <button onClick={evt => this.enviaForm(evt)} className="pure-button pure-button-primary">Gravar</button>
+                                <button onClick={evt => this.atualizaLista(evt)} className="pure-button pure-button-primary">Atualizar</button>
                             </div>
                         </form>
 
