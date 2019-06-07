@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import InputCustomizado from "./InputCustomizado";
 import BotoaoCustomizado from './BotaoCustomizado';
 import ComunicaComServer from "../utils/ComunicaComServer";
+import pubSub from 'pubsub-js'; // notifica enventos para quem quiser ouvir. (subscribe pattern)
+import {canalPublisJs} from '../Constantes'
+
 
 export default class Formulario extends Component {
     constructor(){
@@ -77,10 +80,26 @@ export default class Formulario extends Component {
             }
         ).then(response => {
             console.log(response)
-            this.props.atualizarListagem(response.response);
+            // this.props.atualizarListagem(response.response);
+            pubSub.publish(canalPublisJs.atualiza_listagem_autores, response.response);
+
+            // limpar form
+            this.clearForm();
+
         }).catch(response => {
             console.warn(response.msg);
         });
+    }
+
+    clearForm() {
+        this.setState({
+            formNewUser: {
+                nome: "",
+                email: "",
+                senha: ""
+            }
+        })
+
     }
 
     render() {
@@ -88,9 +107,9 @@ export default class Formulario extends Component {
             <div className="pure-form pure-form-aligned">
                 <form className="pure-form pure-form-aligned">
 
-                    <InputCustomizado label="Nome" id="nome" type="Text" name="nome" value={this.state.formNewUser.nome} onChange={evt => this.setNome(evt)} is_required="true" />
-                    <InputCustomizado label="Email" id="email" type="email" name="email" value={this.state.formNewUser.email} onChange={evt => this.setEmail(evt)} is_required="true" />
-                    <InputCustomizado label="Senha" id="senha" type="password" name="senha" value={this.state.formNewUser.senha} onChange={evt => this.setSenha(evt)} is_required="true" />
+                    <InputCustomizado label="Nome" id="nome" type="Text" name="nome" value={this.state.formNewUser.nome} onChange={evt => this.setNome(evt)} is_required={true} />
+                    <InputCustomizado label="Email" id="email" type="email" name="email" value={this.state.formNewUser.email} onChange={evt => this.setEmail(evt)} is_required={true} />
+                    <InputCustomizado label="Senha" id="senha" type="password" name="senha" value={this.state.formNewUser.senha} onChange={evt => this.setSenha(evt)} is_required={true} />
 
                     <div className="pure-control-group">
                         <BotoaoCustomizado onClick={evt => this.enviaForm(evt)} label="Gravar" />

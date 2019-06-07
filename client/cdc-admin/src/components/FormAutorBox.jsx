@@ -3,6 +3,7 @@ import Formulario from './Formulario';
 import TabelaDeAutores from './TabelaDeAutores';
 import Constantes from "../Constantes";
 import $ from 'jquery';
+import pubSub from 'pubsub-js'; // notifica enventos para quem quiser ouvir. (subscribe pattern)
 
 export default class FormAutorBox extends Component {
 
@@ -26,23 +27,24 @@ export default class FormAutorBox extends Component {
             url: `${Constantes.BASE_URL}/autores`,
             dataType: "json",
             success: (resposta) => {
-                this.setState({ lista: resposta });
+                pubSub.publish(Constantes.canalPublisJs.atualiza_listagem_autores, resposta);
             },
             error: (resposta) => {
                 console.error("Erro em _getAutores", resposta);
                 this.setState({ lista: [] });
             }
         })
-    }
 
-    atualizarListagem(novaLista){
-        this.setState({ lista: novaLista });
+        // toda vez que um evento chamado atualiza-listagem-autores for publicado, o callback é executado
+        pubSub.subscribe(Constantes.canalPublisJs.atualiza_listagem_autores, (topico, objetoPassado) => {
+            this.setState({ lista: objetoPassado });
+        });
     }
 
     render() {
         return (
             <div className="">
-                <Formulario atualizarListagem={(novaLista) => this.atualizarListagem(novaLista)}/>
+                <Formulario />
                 <TabelaDeAutores lista={this.state.lista} />
             </div>
         );
