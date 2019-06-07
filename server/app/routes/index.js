@@ -9,4 +9,10 @@ module.exports  = function(app) {
         
     app.route('/api/novo_autor')
         .post(api.cadastrarAutor);
+
+    app.route('/api/livros')
+        .get(api.livros);
+        
+    app.route('/api/novo_livro')
+        .post(api.cadastrarLivro);
 };

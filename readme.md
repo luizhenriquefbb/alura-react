@@ -37,7 +37,7 @@ npm install
 npm start
 ```
 
-**Importante!!! Ainda estou fazendo o curso e não tenho muita experiência com back-end, até o momento, o get de autores está funcionando. A medida que eu for prosseguindo no curso, eu implemento o servidor.**
+**Importante!!! Ainda estou fazendo o curso. A medida que eu for prosseguindo, eu implemento o servidor.**
 
 Sejam bem vindos para implementá-la tbm.
 

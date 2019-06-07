@@ -9,6 +9,9 @@ var listaDeAutores = [
     { nome: 'Olha como foi simples resolver', email: "2@dlahsd.com",       senha: "er werw" },
 ];
 
+var listaDeLivros = [
+    {nome : "React para meros mortais", autor: "Luiz"}
+]
 
 api.autores = function(req, res) {
     res.json(listaDeAutores);
@@ -21,6 +24,16 @@ api.cadastrarAutor = function(req, res) {
    res.status(200).json(listaDeAutores);
 };
 
+api.livros = function(req,res) {
+    res.json(listaDeLivros);
+}
+
+api.cadastrarLivro = function(req, res) {
+
+    console.log(req.body);
+    listaDeLivros.push(req.body);
+    res.status(200).json(listaDeLivros);
+ };
 
 
 module.exports = api;

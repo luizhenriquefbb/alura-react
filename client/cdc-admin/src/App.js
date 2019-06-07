@@ -3,7 +3,6 @@ import './css/App.css';
 import "./css/side-menu.css"
 import "./css/pure-min.css"
 import Menu from './components/Menu';
-import Main from './components/Main';
 
 
 class App extends Component {
@@ -12,15 +11,8 @@ class App extends Component {
         return (
             <div className="App">
                 <div id="layout">
-
-                    <a href="#menu" id="menuLink" className="menu-link">
-
-                        <span></span>
-                    </a>
-
                     <Menu />
-                    <Main />
-
+                    {this.props.children}
                 </div>
             </div>
         );

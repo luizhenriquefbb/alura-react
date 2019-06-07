@@ -68,7 +68,7 @@ export default class ComunicaComServer {
     }
 
     static post(url, data) {
-        url = `${BASE_URL}/novo_autor`
+        url = `${BASE_URL}/${url}`
         return new Promise((resolve, reject) => {
             let xhr = new XMLHttpRequest();
             xhr.open("POST", url, true);

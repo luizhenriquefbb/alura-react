@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Formulario from './Formulario';
+import FormularioUsuario from './FormularioUsuario';
 import TabelaDeAutores from './TabelaDeAutores';
 import Constantes from "../Constantes";
 import $ from 'jquery';
@@ -44,7 +44,7 @@ export default class FormAutorBox extends Component {
     render() {
         return (
             <div className="">
-                <Formulario />
+                <FormularioUsuario />
                 <TabelaDeAutores lista={this.state.lista} />
             </div>
         );

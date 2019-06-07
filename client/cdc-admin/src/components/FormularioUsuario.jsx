@@ -6,7 +6,7 @@ import pubSub from 'pubsub-js'; // notifica enventos para quem quiser ouvir. (su
 import {canalPublisJs} from '../Constantes'
 
 
-export default class Formulario extends Component {
+export default class FormularioUsuario extends Component {
     constructor(){
         super();
         this.state = {

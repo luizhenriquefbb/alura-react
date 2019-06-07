@@ -1,8 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import Main from './components/Main';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Autor from './components/Autor';
+import Livro from './components/Livro';
+import NotFound from './components/NotFound';
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+
+  <BrowserRouter>
+    <Route path="/">
+      <App >
+        <Switch>
+          <Route path="/" component={Main} exact={true} />
+          <Route path="/main" component={Main} exact={true} />
+          <Route path="/Autor" component={Autor} />
+          <Route path="/Livro" component={Livro} />
+          <Route component={NotFound} />
+        </Switch>
+      </App>
+    </Route>
+  </BrowserRouter>
+
+
+  , document.getElementById('root')
 );
