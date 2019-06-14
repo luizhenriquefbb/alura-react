@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import FormularioUsuario from './FormularioUsuario';
+import FormularioUsuario from './FormularioAutor';
 import TabelaDeAutores from './TabelaDeAutores';
-import Constantes from "../Constantes";
+import Constantes from "../../Constantes";
 import $ from 'jquery';
 import pubSub from 'pubsub-js'; // notifica enventos para quem quiser ouvir. (subscribe pattern)
 
@@ -39,6 +39,7 @@ export default class FormAutorBox extends Component {
         pubSub.subscribe(Constantes.canalPublisJs.atualiza_listagem_autores, (topico, objetoPassado) => {
             this.setState({ lista: objetoPassado });
         });
+
     }
 
     render() {

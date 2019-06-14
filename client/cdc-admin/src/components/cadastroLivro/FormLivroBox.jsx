@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormularioLivro from "./FormularioLivro";
 import TabelaDeLivros from './TabelaDeLivros';
-import Constantes from "../Constantes";
+import Constantes from "../../Constantes";
 import $ from 'jquery';
 export default class FormLivroBox extends Component {
 

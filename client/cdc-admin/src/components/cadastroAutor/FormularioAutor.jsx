@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import InputCustomizado from "./InputCustomizado";
-import BotoaoCustomizado from './BotaoCustomizado';
-import ComunicaComServer from "../utils/ComunicaComServer";
+import InputCustomizado from "../InputCustomizado";
+import BotoaoCustomizado from '../BotaoCustomizado';
+import ComunicaComServer from "../../utils/ComunicaComServer";
 import pubSub from 'pubsub-js'; // notifica enventos para quem quiser ouvir. (subscribe pattern)
-import {canalPublisJs} from '../Constantes'
+import {canalPublisJs} from '../../Constantes'
 
 
-export default class FormularioUsuario extends Component {
+export default class FormularioAutor extends Component {
     constructor(){
         super();
         this.state = {

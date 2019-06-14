@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import InputCustomizado from "./InputCustomizado";
-import BotoaoCustomizado from './BotaoCustomizado';
-import ComunicaComServer from "../utils/ComunicaComServer";
+import InputCustomizado from "../InputCustomizado";
+import BotoaoCustomizado from '../BotaoCustomizado';
+import ComunicaComServer from "../../utils/ComunicaComServer";
+import { BASE_URL } from "../../Constantes";
+import $ from 'jquery';
 
 
 export default class FormularioUsuario extends Component {
@@ -11,9 +13,37 @@ export default class FormularioUsuario extends Component {
             formLivro: {
                 nome  : "",
                 autor : "",
+                autores:[]
             }
         }
     }
+
+     /**
+     * Chamado quando o componente foi renderizado pela primira vez
+     */
+    componentDidMount() {
+        this.getAutores()
+    }
+
+    getAutores() {
+        console.log("Consultando", `${BASE_URL}/autores`);
+        $.ajax({
+            url: `${BASE_URL}/autores`,
+            dataType: "json",
+            success: (resposta) => {
+                const formLivro = this.state.formLivro;
+                formLivro.autores = resposta;
+                this.setState({ formLivro : formLivro });
+            },
+            error: (resposta) => {
+                console.error("Erro em _getAutores", resposta);
+            }
+        })
+
+     
+
+    }
+
 
 
     setNome(evento){
@@ -27,6 +57,7 @@ export default class FormularioUsuario extends Component {
         this.setState({formNewUser : formNewUser});
 
     }
+
     setAutor(evento){
         // get old object
         let formNewUser = this.state.formLivro;
@@ -87,7 +118,12 @@ export default class FormularioUsuario extends Component {
                 <form className="pure-form pure-form-aligned">
 
                     <InputCustomizado label="Nome" id="nome" type="Text" name="nome" value={this.state.formLivro.nome} onChange={evt => this.setNome(evt)} is_required={true} />
-                    <InputCustomizado label="Autor" id="autor" type="Text" name="nome" value={this.state.formLivro.autor} onChange={evt => this.setAutor(evt)} is_required={true} />
+                    Autor: <select name="" id="" onChange={evt => this.setAutor(evt)} required>
+                        {this.state.formLivro.autores.map((autor, index) => {
+                            return <option key={index} value={autor.nome}>{autor.nome}</option>
+                        })}
+                    </select>
+                    <br/>
                     <div className="pure-control-group">
                         <BotoaoCustomizado onClick={evt => this.enviaForm(evt)} label="Gravar" />
                     </div>

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import Main from './components/Main';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Autor from './components/Autor';
-import Livro from './components/Livro';
+import Autor from './components/cadastroAutor/Autor';
+import Livro from './components/cadastroLivro/Livro';
 import NotFound from './components/NotFound';
 
 ReactDOM.render(
